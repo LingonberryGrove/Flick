@@ -1,0 +1,61 @@
+services:
+  db:
+    container_name: flick-db
+    restart: unless-stopped
+    volumes:
+      - flick-db-data:/var/lib/postgresql/data
+    networks:
+      - flick-network
+
+  server:
+    container_name: flick-server
+    restart: unless-stopped
+    command: sh -c "until pnpm migrate:up; do sleep 2; done && node src/server.js"
+    env_file: ../.env
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      CORS_ORIGIN: https://flick.lingon.cloud
+    volumes:
+    - flick-posters:/repo/apps/server/posters
+    - flick-backdrops:/repo/apps/server/backdrops
+    networks:
+      - flick-network
+      - proxy
+
+  client:
+    container_name: flick-client
+    restart: unless-stopped
+    networks:
+      - proxy
+
+  caddy:
+    image: caddy:2-alpine
+    container_name: flick-caddy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./caddy/certs:/etc/caddy/certs:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    networks:
+      - flick-network
+      - proxy
+
+networks:
+  flick-network:
+    name: flick-network
+    external: true
+  proxy:
+    name: proxy
+    external: true
+
+volumes:
+  flick-db-data:
+  flick-posters:
+  flick-backdrops:
+  caddy-data:
+  caddy-config:
