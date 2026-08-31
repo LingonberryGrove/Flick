@@ -1,0 +1,19 @@
+{
+  "name": "flick",
+  "version": "3.0.0",
+  "private": true,
+  "description": "A swipe-based movie discovery app.",
+  "author": "Hasse Nilsson",
+  "license": "MIT",
+  "packageManager": "pnpm@11.24.0+sha256.d1eab2433172661cc36a18ec85fce93f771db1962717329cc01ec9c2824ca24f",
+  "engines": {
+    "node": ">=24.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "scripts": {
+    "dev": "docker compose -f docker/docker-compose.yml -f docker/docker-compose.dev.yml up --build",
+    "dev:down": "docker compose -f docker/docker-compose.yml -f docker/docker-compose.dev.yml down",
+    "test": "pnpm --filter server test",
+    "lint": "pnpm -r --if-present lint"
+  }
+}
