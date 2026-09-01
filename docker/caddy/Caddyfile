@@ -8,7 +8,7 @@ flick.lingon.cloud {
                 X-Content-Type-Options "nosniff"
                 Referrer-Policy "strict-origin-when-cross-origin"
                 Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=()"
-                Content-Security-Policy "default-src 'self'; script-src 'self' https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' https://flick-api.lingon.cloud data:; font-src 'self' data:; connect-src 'self' https://flick-api.lingon.cloud; frame-src https://www.youtube-nocookie.com https://www.youtube.com https://challenges.cloudflare.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests"
+                Content-Security-Policy "default-src 'self'; script-src 'self' https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' https://flick-api.lingon.cloud https://image.tmdb.org data:; font-src 'self' data:; connect-src 'self' https://flick-api.lingon.cloud; frame-src https://www.youtube-nocookie.com https://www.youtube.com https://challenges.cloudflare.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests"
                 +Cache-Control "no-transform"
                 -Server
         }

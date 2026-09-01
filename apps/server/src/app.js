@@ -10,6 +10,11 @@ import express from 'express'
 import rateLimit from 'express-rate-limit'
 import helmet from 'helmet'
 import { router } from './routes/router.js'
+import path from 'path'
+import { fileURLToPath } from 'url'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 // Create an Express application.
 const app = express()
@@ -22,7 +27,8 @@ app.use(helmet({
   contentSecurityPolicy: {
     directives: {
       defaultSrc: ["'none'"],
-      frameAncestors: ["'none'"]
+      frameAncestors: ["'none'"],
+      imgSrc: ["'self'", 'https://flick-api.lingon.cloud', 'https://image.tmdb.org', 'data:']
     }
   },
   strictTransportSecurity: {
@@ -68,7 +74,7 @@ app.use(globalLimiter)
 // Parse cookie header and populate req.cookies.
 app.use(cookieParser())
 
-app.use('/assets', express.static('dist/assets', {
+app.use('/assets', express.static(path.join(__dirname, '../../client/dist/assets'), {
   maxAge: '30d',
   immutable: true
 }))
