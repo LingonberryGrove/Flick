@@ -10,12 +10,12 @@
     "node": ">=24.0.0"
   },
   "scripts": {
-    "dev": "pnpm migrate:up && node --env-file=../../.env --watch src/server.js",
-    "start": "node --env-file=../../.env src/server.js",
-    "migrate:up": "node-pg-migrate --envPath ../../.env up",
-    "migrate:down": "node-pg-migrate --envPath ../../.env down",
-    "migrate:create": "node-pg-migrate --envPath ../../.env create --migration-file-language js",
-    "test": "node-pg-migrate --envPath ../../.env.test up && node --env-file=../../.env.test --experimental-test-module-mocks --test --test-concurrency=1 tests/**/*.test.js",
+    "dev": "node --env-file-if-exists=../../.env node_modules/node-pg-migrate/bin/node-pg-migrate up && node --env-file-if-exists=../../.env --watch src/server.js",
+    "start": "node --env-file-if-exists=../../.env src/server.js",
+    "migrate:up": "node --env-file-if-exists=../../.env node_modules/node-pg-migrate/bin/node-pg-migrate up",
+    "migrate:down": "node --env-file-if-exists=../../.env node_modules/node-pg-migrate/bin/node-pg-migrate down",
+    "migrate:create": "node --env-file-if-exists=../../.env node_modules/node-pg-migrate/bin/node-pg-migrate create --migration-file-language js",
+    "test": "node --env-file-if-exists=../../.env.test node_modules/node-pg-migrate/bin/node-pg-migrate up && node --env-file-if-exists=../../.env.test --experimental-test-module-mocks --test --test-concurrency=1 tests/**/*.test.js",
     "lint": "eslint ./src || exit 0",
     "lint:fix": "eslint ./src --fix || exit 0"
   },
