@@ -11,8 +11,8 @@ This runs migrations against the test database (defined in
 
 Tests live in `apps/server/tests/`, split into:
 
-- **integration/**: hit the API via supertest, mocking external services
-- **unit/**: test individual functions and models directly
+- **integration/** -- hit the API via supertest, mocking external services
+- **unit/** -- test individual functions and models directly
 
 Uses Node's native test runner (`node --test`) with
 `--experimental-test-module-mocks` for mocking.
