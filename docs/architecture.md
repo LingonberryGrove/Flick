@@ -9,10 +9,10 @@ DDoS protection.
 
 ## Apps
 
-- **apps/client**: React + Vite + Tailwind. Handles the swipe UI,
+- **apps/client** -- React + Vite + Tailwind. Handles the swipe UI,
   movie discovery, watchlist, and search. Ships as a static bundle
   served by nginx.
-- **apps/server**: Node.js Express API. Handles auth, user data,
+- **apps/server** -- Node.js Express API. Handles auth, user data,
   movie interactions, recommendations, and image proxying. Talks to
   PostgreSQL directly via `pg` (no ORM).
 
