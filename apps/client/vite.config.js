@@ -6,7 +6,7 @@ import tailwindcss from '@tailwindcss/vite'
 import { VitePWA } from 'vite-plugin-pwa'
 import { readFileSync } from 'fs'
 
-const { version } = JSON.parse(readFileSync('./package.json', 'utf-8'))
+const { version } = JSON.parse(readFileSync('../../package.json', 'utf-8'))
 
 export default defineConfig({
   envDir: '../..',
