@@ -30,7 +30,8 @@ services:
       - proxy
 
   caddy:
-    image: caddy:2-alpine
+    build:
+      context: ./caddy
     container_name: flick-caddy
     restart: unless-stopped
     ports:
@@ -40,16 +41,9 @@ services:
       - /home/hasse/flick/caddy/certs:/etc/caddy/certs:ro
       - caddy-data:/data
       - caddy-config:/config
-    configs:
-      - source: caddyfile
-        target: /etc/caddy/Caddyfile
     networks:
       - flick-network
       - proxy
-
-configs:
-  caddyfile:
-    file: ./caddy/Caddyfile
 
 networks:
   flick-network:
