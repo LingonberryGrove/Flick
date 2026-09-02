@@ -37,10 +37,12 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - /home/hasse/flick/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
       - /home/hasse/flick/caddy/certs:/etc/caddy/certs:ro
       - caddy-data:/data
       - caddy-config:/config
+    configs:
+      - source: caddyfile
+        target: /etc/caddy/Caddyfile
     networks:
       - flick-network
       - proxy
