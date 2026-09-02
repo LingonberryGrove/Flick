@@ -134,7 +134,19 @@ export default function DiscoveryCard ({ movie, error, compact = false, isFirst 
   }
 
   if (!movie) {
-    return <div className='size-full bg-surface-light animate-pulse' aria-hidden='true' />
+    return (
+      <div className='relative size-full overflow-hidden bg-surface-light animate-pulse'>
+        {/* Poster skeleton */}
+        <div className='absolute inset-0 bg-gray-800/50' />
+
+        {/* Text skeletons */}
+        <div className='absolute bottom-4 left-4 right-4 flex flex-col gap-2'>
+          <div className='h-6 w-3/4 bg-gray-600 rounded' />
+          <div className='h-4 w-1/2 bg-gray-600 rounded' />
+          <div className='h-4 w-1/3 bg-gray-600 rounded' />
+        </div>
+      </div>
+    )
   }
 
   const scrollToSlide = (index) => {

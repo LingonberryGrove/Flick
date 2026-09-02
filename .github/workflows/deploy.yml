@@ -27,13 +27,13 @@ jobs:
           docker context use production
           cat > .env << EOF
           DB_PASSWORD=${{ secrets.DB_PASSWORD }}
-          DATABASE_URL=postgres://flick:${{ secrets.DB_PASSWORD }}@db:5432/flick
           JWT_SECRET=${{ secrets.JWT_SECRET }}
           JWT_LIFE=${{ vars.JWT_LIFE }}
           TMDB_API_KEY=${{ secrets.TMDB_API_KEY }}
           TURNSTILE_SECRET_KEY=${{ secrets.TURNSTILE_SECRET_KEY }}
           VITE_API_URL=${{ vars.VITE_API_URL }}
           VITE_TURNSTILE_SITE_KEY=${{ vars.VITE_TURNSTILE_SITE_KEY }}
+          DATABASE_URL=postgres://flick:${{ secrets.DB_PASSWORD }}@db:5432/flick
           EOF
           docker network create flick-network || true
           docker network create proxy || true
