@@ -114,11 +114,14 @@ export default function ProfilePage () {
         {/* Profile header */}
         <div className='flex flex-col gap-8 px-4 md:px-0 justify-between'>
           {/* Left: profile info */}
-          <div className='flex flex-col items-center gap-6 shrink-0'>
-            <div className='flex flex-col justify-center gap-3'>
+          <div className='flex flex-col items-center gap-4 shrink-0'>
+            <div className='flex flex-col justify-center'>
               <div className={`flex flex-col items-center justify-center size-32 inset-0 rounded-full ${avatarColor(user.displayName)} text-3xl leading-none`}>
                 {user.displayName[0]}
               </div>
+            </div>
+            <div className='text-xl font-semibold'>
+              {user.displayName}
             </div>
           </div>
         </div>
