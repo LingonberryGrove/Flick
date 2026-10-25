@@ -5,7 +5,7 @@
   "description": "A swipe-based movie discovery app.",
   "author": "Hasse Nilsson",
   "license": "MIT",
-  "packageManager": "pnpm@11.24.0",
+  "packageManager": "pnpm@12.15.0",
   "engines": {
     "node": ">=24.0.0",
     "pnpm": ">=11.0.0"

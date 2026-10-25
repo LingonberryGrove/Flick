@@ -4,7 +4,8 @@ import { usePageMetadata } from '../hooks/usePageMetadata.js'
 import { toast } from 'sonner'
 import { useMovieOverlay } from '../hooks/useMovieOverlay.js'
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import WatchlistCard from '../components/WatchlistCard.jsx'
+import PosterCard from '../components/PosterCard.jsx'
+import WatchlistSaveButton from '@/components/WatchlistSaveButton.jsx'
 
 const WATCHLIST_PAGE_LIMIT = 20
 
@@ -145,10 +146,15 @@ export default function WatchlistPage () {
       {movies.length > 0 && (
         <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 lg:pb-6'>
           {movies.map(movie => (
-            <WatchlistCard
+            <PosterCard
               key={movie.tmdb_id}
               movie={movie}
-              onToggleSave={(next) => handleCardToggleSave(movie.tmdb_id, next)}
+              topLeft={
+                <WatchlistSaveButton
+                  movie={movie}
+                  onToggleSave={(next) => handleCardToggleSave(movie.tmdb_id, next)}
+                />
+              }
             />
           ))}
           <div ref={bottomRef} />

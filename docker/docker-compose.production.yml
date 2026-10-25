@@ -17,45 +17,27 @@ services:
       PORT: 3000
       CORS_ORIGIN: https://flick.lingon.cloud
     volumes:
-    - flick-posters:/repo/apps/server/posters
-    - flick-backdrops:/repo/apps/server/backdrops
+      - flick-posters:/repo/apps/server/posters
+      - flick-backdrops:/repo/apps/server/backdrops
     networks:
       - flick-network
-      - proxy
+      - edge
 
   client:
     container_name: flick-client
     restart: unless-stopped
     networks:
-      - proxy
-
-  caddy:
-    build:
-      context: ./caddy
-    container_name: flick-caddy
-    restart: unless-stopped
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - /home/hasse/flick/caddy/certs:/etc/caddy/certs:ro
-      - caddy-data:/data
-      - caddy-config:/config
-    networks:
-      - flick-network
-      - proxy
+      - edge
 
 networks:
   flick-network:
     name: flick-network
     external: true
-  proxy:
-    name: proxy
+  edge:
+    name: edge
     external: true
 
 volumes:
   flick-db-data:
   flick-posters:
   flick-backdrops:
-  caddy-data:
-  caddy-config:
